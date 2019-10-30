@@ -17,3 +17,8 @@
 	path = OCA/web
 	url = git@github.com:OCA/web.git
 	branch = 12.0
+
+[submodule "CybroOdoo/OpenHRMS"]
+	path = CybroOdoo/OpenHRMS
+	url = git@github.com:CybroOdoo/OpenHRMS.git
+	branch = 12.0
