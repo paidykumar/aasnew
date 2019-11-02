@@ -27,3 +27,8 @@
 	path = OCA/operating-unit
 	url = git@github.com:OCA/operating-unit.git
 	branch = 12.0
+
+[submodule "openeducat/openeducat_erp"]
+	path = openeducat/openeducat_erp
+	url = git@github.com:openeducat/openeducat_erp.git
+	branch = 12.0
