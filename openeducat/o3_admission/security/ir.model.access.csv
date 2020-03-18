@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_o3_admission_o3_admission,o3_admission.o3_admission,model_o3_admission_o3_admission,,1,0,0,0

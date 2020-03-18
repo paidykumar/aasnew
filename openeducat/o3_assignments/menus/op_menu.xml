@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <menuitem id="openeducat_assignment.o3_menu_generate_grading_summary_report"
+                  string="Grading Summary Report"
+                  parent="openeducat_assignment.menu_op_assignment_configuration"
+                  groups="openeducat_core.group_op_back_office_admin,openeducat_core.group_op_faculty"
+                  sequence="40"
+                  action="o3_assignments.o3_act_open_grading_table_report_view"/>
+    </data>
+</odoo>

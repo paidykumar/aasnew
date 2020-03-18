@@ -1,0 +1,1 @@
+this module adds new report called Assignment marks in assignments page.

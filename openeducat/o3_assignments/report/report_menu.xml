@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <report id="report_assignments_marksheet"
+                string="Grading Summary Report"
+                model="op.assignment"
+                report_type="qweb-pdf"
+                file="o3_assignments.report_assignment_report"
+                name="o3_assignments.report_assignment_report"
+                menu="False"/>
+    </data>
+</odoo>
+

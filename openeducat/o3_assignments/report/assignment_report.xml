@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_assignment_report">
+            <style>
+                .font{
+                font-size:14px;
+                font-family:"Helvetica"
+                }
+                @page{
+                margin-top:1%;
+                size: A4;
+                }
+            </style>
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="font">
+                        <div class="page">
+                            <t>
+                                <t t-foreach="docs" t-as="o">
+
+                                    <div class="text-center">
+                                        <h2>
+                                            Grading Summary Report
+                                        </h2>
+                                    </div>
+                                    <br></br>
+                                    <br></br>
+                                    <t t-if="data['semester'] == 's1' or data['semester'] == 'all' ">
+                                        <div class="text-left"><b>Semester-01</b></div>
+                                        <br></br>
+                                        <table width="100%">
+                                            <tbody t-foreach="get_full_name(data)" t-as="o2">
+                                                <tr>
+                                                    <td width="17%">
+                                                        <b>Course
+
+                                                        </b>
+                                                    </td>
+                                                    <td>
+                                                        :
+                                                        <span t-esc="o2['course']"/>
+
+                                                    </td>
+                                                    <td width="15%">
+                                                        <b>Batch
+                                                        </b>
+                                                    </td>
+                                                    <td>
+                                                        :
+                                                        <span t-esc="o2['batch']"/>
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="15%">
+                                                        <b>Subject
+                                                        </b>
+                                                    </td>
+                                                    <td>
+                                                        :
+                                                        <span t-esc="o2['subject']"/>
+                                                    </td>
+
+                                                    <td
+                                                            width="17%">
+                                                        <b>Teacher
+                                                        </b>
+                                                    </td>
+                                                    <td>
+                                                        :
+                                                        <span t-esc="get_faculty_01(data)"/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <br></br>
+                                        <br></br>
+
+
+                                        <table class="table table-bordered" width="100%">
+
+                                            <thead>
+                                                <th
+                                                        class="text-center">SNO
+                                                </th>
+                                                <th
+                                                        class="text-center">Name of Student
+                                                </th>
+                                                <th
+                                                        class="text-center">CW
+
+                                                </th>
+                                                <th
+                                                        class="text-center">HW
+
+                                                </th>
+                                                <th
+                                                        class="text-center">PROJECT
+
+                                                </th>
+
+                                                <th
+                                                        class="text-center">QUIZ1
+
+                                                </th>
+                                                <th
+                                                        class="text-center">QUIZ2
+
+                                                </th>
+                                                <th
+                                                        class="text-center">QUIZ3
+
+                                                </th>
+                                                <th
+                                                        class="text-center">UT
+
+                                                </th>
+                                                <th
+                                                        class="text-center">TOTAL
+
+                                                </th>
+                                            </thead>
+
+
+                                            <tbody>
+
+                                                <tr t-foreach="get_objects(data)" t-as="a">
+                                                    <td class="text-center">
+                                                        <span t-esc="a_index+1"/>
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <span t-raw="'%s' %  a if  a else''"/>
+                                                    </td>
+                                                    <t t-set="total_marks" t-value="0"/>
+                                                    <td>
+                                                        <t class="text-right" t-if="'S1-CW' in a_value ">
+                                                            <span t-raw="'%s' %  a_value['S1-CW'] if  a_value['S1-CW'] else''"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t class="text-right" t-if="'S1-HW' in a_value ">
+                                                            <span t-raw="'%s' %  a_value['S1-HW'] if  a_value['S1-HW'] else''"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t class="text-right" t-if="'S1-PR' in a_value ">
+                                                            <span t-raw="'%s' %  a_value['S1-PR'] if  a_value['S1-PR'] else''"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t class="text-right" t-if="'S1-QZ1' in a_value ">
+                                                            <span t-raw="'%s' %  a_value['S1-QZ1'] if  a_value['S1-QZ1'] else''"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t class="text-right" t-if="'S1-QZ2' in a_value ">
+                                                            <span t-raw="'%s' %  a_value['S1-QZ2'] if  a_value['S1-QZ2'] else''"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t class="text-right" t-if="'S1-QZ3' in a_value ">
+                                                            <span t-raw="'%s' %  a_value['S1-QZ3'] if  a_value['S1-QZ3'] else''"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t class="text-right" t-if="'S1-UT' in a_value ">
+                                                            <span t-raw="'%s' %  a_value['S1-UT'] if  a_value['S1-UT'] else''"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a_value" t-as="line">
+                                                            <t t-set="total_marks" t-value="total_marks + line_value"/>
+                                                        </t>
+                                                        <span>
+                                                            <t t-esc="total_marks"/>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <br></br>
+                                        <br></br>
+                                    </t>
+                                </t>
+                            </t>
+                            <t>
+                                <t t-foreach="docs" t-as="o">
+                                    <br></br>
+                                    <br></br>
+                                    <t t-if="data['semester'] == 's2' or data['semester'] == 'all' ">
+                                        <div class="text-left"><b>Semester-02</b></div>
+                                        <br></br>
+                                        <table width="100%">
+                                            <tbody t-foreach="get_full_name(data)" t-as="o">
+                                                <tr>
+                                                    <td width="17%">
+                                                        <b>Course
+                                                        </b>
+                                                    </td>
+                                                    <td>
+                                                        :
+                                                        <span t-esc="o['course']"/>
+
+                                                    </td>
+                                                    <td width="15%">
+                                                        <b>Batch
+                                                        </b>
+                                                    </td>
+                                                    <td>
+                                                        :
+                                                        <span t-esc="o['batch']"/>
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="15%">
+                                                        <b>Subject
+                                                        </b>
+                                                    </td>
+                                                    <td>
+                                                        :
+                                                        <span t-esc="o['subject']"/>
+                                                    </td>
+
+                                                    <td
+                                                            width="17%">
+                                                        <b>Teacher
+                                                        </b>
+                                                    </td>
+                                                    <td>
+                                                        :
+                                                        <t t-if="get_faculty_02(data)">
+                                                            <span t-esc="get_faculty_02(data)"/>
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <br></br>
+                                        <br></br>
+
+                                        <table class="table table-bordered" width="100%">
+
+                                            <thead>
+                                                <th
+                                                        class="text-center">SNO
+                                                </th>
+                                                <th
+                                                        class="text-center">Name of Student
+                                                </th>
+                                                <th
+                                                        class="text-center">CW
+
+                                                </th>
+                                                <th
+                                                        class="text-center">HW
+
+                                                </th>
+                                                <th
+                                                        class="text-center">PROJECT
+
+                                                </th>
+
+                                                <th
+                                                        class="text-center">QUIZ1
+
+                                                </th>
+                                                <th
+                                                        class="text-center">QUIZ2
+
+                                                </th>
+                                                <th
+                                                        class="text-center">QUIZ3
+
+                                                </th>
+                                                <th
+                                                        class="text-center">UT
+
+                                                </th>
+                                                <th
+                                                        class="text-center">TOTAL
+
+                                                </th>
+                                            </thead>
+
+
+                                            <tbody>
+
+                                                <tr t-foreach="get_object(data)" t-as="a">
+
+                                                    <td class="text-center">
+                                                        <span t-esc="a_index+1"/>
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <span t-raw="'%s' %  a if  a else''"/>
+                                                    </td>
+                                                    <t t-set="total_marks2" t-value="0"/>
+                                                    <td>
+                                                        <t class="text-right" t-if="'S2-CW' in a_value ">
+                                                            <span t-raw="'%s' %  a_value['S2-CW'] if  a_value['S2-CW'] else''"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t class="text-right" t-if="'S2-HW' in a_value ">
+                                                            <span t-raw="'%s' %  a_value['S2-HW'] if  a_value['S2-HW'] else''"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t class="text-right" t-if="'S2-PR' in a_value ">
+                                                            <span t-raw="'%s' %  a_value['S2-PR'] if  a_value['S2-PR'] else''"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t class="text-right" t-if="'S2-QZ1' in a_value ">
+                                                            <span t-raw="'%s' %  a_value['S2-QZ1'] if  a_value['S2-QZ1'] else''"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t class="text-right" t-if="'S2-QZ2' in a_value ">
+                                                            <span t-raw="'%s' %  a_value['S2-QZ2'] if  a_value['S2-QZ2'] else''"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t class="text-right" t-if="'S2-QZ3' in a_value ">
+                                                            <span t-raw="'%s' %  a_value['S2-QZ3'] if  a_value['S2-QZ3'] else''"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t class="text-right" t-if="'S2-UT' in a_value ">
+                                                            <span t-raw="'%s' %  a_value['S2-UT'] if  a_value['S2-UT'] else''"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a_value" t-as="line">
+                                                            <t t-set="total_marks2" t-value="total_marks2 + line_value"/>
+                                                        </t>
+                                                        <span>
+                                                            <t t-esc="total_marks2"/>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <br></br>
+                                        <br></br>
+                                    </t>
+                                </t>
+                            </t>
+                            <p style="page-break-after: always;"></p>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

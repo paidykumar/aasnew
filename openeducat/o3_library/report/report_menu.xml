@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <report id="o3_media_catalog_report"
+                string="Media Catalog Report"
+                model="op.media"
+                report_type="qweb-pdf"
+                file="o3_library.media_catalog_report"
+                name="o3_library.media_catalog_report"
+                menu="True"/>
+    </data>
+</odoo>
+

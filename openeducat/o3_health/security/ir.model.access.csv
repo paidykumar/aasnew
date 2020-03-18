@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_op_health_student,name_op_health_student,openeducat_health.model_op_health,o3_student.group_op_student,1,0,0,0

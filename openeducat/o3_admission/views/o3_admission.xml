@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="view_op_admission_form_inherit">
+            <field name="name">op.admission.form</field>
+            <field name="model">op.admission</field>
+            <field name="inherit_id" ref="openeducat_admission.view_op_admission_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page[3]/group[2]" position="after">
+                    <separator colspan="4" string="Applicant Details"/>
+                        <group col="4" colspan="4">
+                            <field name="x_grade_applied"/>
+                            <field name="x_student_in_qatar"/>
+                            <field name="x_grade_eligible"/>
+                            <field name="x_expected_date_arrival"/>
+
+                        </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

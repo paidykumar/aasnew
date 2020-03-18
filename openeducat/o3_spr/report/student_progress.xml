@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="student_progress_report">
+            <style>
+                .font{
+                font-size:10px;
+                font-family:"Helvetica"
+                }
+                @page{
+                margin-top:1%;
+                size: A4;
+                }
+            </style>
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="font">
+                        <div class="page">
+                            <t t-foreach="docs" t-as="object">
+                                <t t-foreach="get_objects(object)" t-as="objs">
+                                    <br></br>
+                                    <br></br>
+                                    <div class="text-center">
+                                        <h5>
+                                            Student Progress Report
+                                        </h5>
+                                        <h5>
+                                            Academic Year
+                                            <span t-raw="'%s' %  objs['school_year'] if objs['school_year'] else ''"/>
+                                        </h5>
+
+                                    </div>
+                                    <div class="text-center">
+                                        <h6>
+                                            Student Information
+                                        </h6>
+                                    </div>
+                                    <table class="table table-bordered" width="100%" style="height:15mm;">
+                                        <tbody>
+                                            <tr width="100%">
+                                                <td width="50%">
+                                                    Student Name
+                                                    :
+                                                    <span t-raw="'%s' % objs['student'] if objs['student'] else ''"/>
+
+
+                                                </td>
+                                                <td width="50%">
+                                                    Teacher
+                                                    :
+                                                    <span t-raw="'%s' % objs['faculty'] if objs['faculty'] else ''"/>
+                                                </td>
+                                            </tr>
+                                            <tr width="100%">
+
+                                                <td width="50%">
+                                                    Batch
+                                                    :
+                                                    <span t-raw="'%s' %   objs['batch'] if objs['batch'] else ''"/>
+                                                </td>
+
+                                                <td width="50%">
+                                                    School Year
+                                                    :
+                                                    <span t-raw="'%s' %   objs['school_year'][:4] if objs['school_year'][:4] else ''"/>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="text-center">
+                                        <h6>
+                                            Grading Scale
+                                        </h6>
+                                    </div>
+
+                                    <table class="table table-bordered" width="100%" style="height:20mm;">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    3 = Very Good: Student exceeds grade-level expectations.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    2 = Competent: Student meets grade-level expectations.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    1 = Needs Improvement: Student needs more practice to meet
+                                                    grade-level
+                                                    expectations.
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <style>
+                                        .row-ID {
+                                        width: 30%;
+                                        align-text:left;
+                                        }
+                                        .row-subject {
+                                        width: 10%;
+                                        align-text:left;
+                                        }
+                                    </style>
+                                    <br></br>
+                                    <table class="table table-bordered" width="100%" style="height:40mm !important;">
+
+                                        <thead>
+                                            <th class="row-1 row-ID">
+
+                                            </th>
+                                            <th class="row-2 row-subject">
+                                                English
+                                            </th>
+                                            <th class="row-2 row-subject">
+                                                Maths
+
+                                            </th>
+                                            <th class="row-2 row-subject">
+                                                Science
+
+                                            </th>
+                                            <th class="row-2 row-subject">
+                                                Social Studies
+
+                                            </th>
+
+                                            <th class="row-2 row-subject">
+                                                Arabic
+
+                                            </th>
+                                            <th class="row-2 row-subject">
+                                                Religion
+
+                                            </th>
+                                            <th class="row-2 row-subject">
+                                                Qatar History
+
+                                            </th>
+
+                                        </thead>
+
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    SPR-Completes classwork on time
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR01' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'English'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR01' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Mathematics'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR01' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Science'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR01' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Social'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR01' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Arabic'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR01' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Religion'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR01' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Qatar History'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    SPR-Class participation
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR02' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'English'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR02' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Mathematics'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR02' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Science'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR02' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Social'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR02' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Arabic'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR02' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Religion'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR02' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Qatar History'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    SPR-Materials
+                                                    (brings books/resources)
+
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR03' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'English'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR03' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Mathematics'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR03' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Science'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR03' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Social'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR03' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Arabic'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR03' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Religion'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR03' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Qatar History'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    SPR-Comprehension of content area
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR04' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'English'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR04' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Mathematics'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR04' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Science'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR04' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Social'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR04' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Arabic'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR04' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Religion'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR04' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Qatar History'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    SPR-Homework submitted on time
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR05' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'English'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR05' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Mathematics'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR05' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Science'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR05' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Social'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR05' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Arabic'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR05' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Religion'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR05' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Qatar History'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    SPR-Behavior in class
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR06' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'English'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR06' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Mathematics'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR06' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Science'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR06' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Social'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR06' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Arabic'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR06' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Religion'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR06' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Qatar History'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    SPR-Cooperative Attitude with teachers
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR07' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'English'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR07' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Mathematics'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR07' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Science'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR07' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Social'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR07' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Arabic'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR07' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Religion'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR07' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Qatar History'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    SPR-Cooperative Attitude with students
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR08' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'English'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR08' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Mathematics'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR08' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Science'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR08' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Social'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR08' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Arabic'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR07' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Religion'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-foreach="objs['line']" t-as="a">
+                                                        <t t-if="a.get('subject',{'assignment_code':''})['assignment_code'] == 'SPR08' and
+                                                                a.get('subject',{'subject':''})['subject'] == 'Qatar History'">
+                                                            <span t-esc="a.get('subject',{'marks':'0'})['marks']"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="text-left">
+                                        <h6>
+                                            Test Marks
+                                        </h6>
+                                    </div>
+                                    <table width="100%" class="table table-bordered" style="height:15mm;">
+                                        <thead>
+                                            <th class="text-center">English
+
+                                            </th>
+                                            <th class="text-center">Maths
+                                            </th>
+                                            <th class="text-center">Science
+                                            </th>
+                                            <th class="text-center">Social Studies
+                                            </th>
+                                            <th class="text-center">Arabic
+                                            </th>
+                                            <th class="text-center">Religion
+                                            </th>
+                                            <th class="text-center">Qatar History
+                                            </th>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <span t-raw="'%.1f' %  get_marks(objs['batch'],objs['student'],'English') if get_marks(objs['batch'],objs['student'],'English') else ''"/>
+                                                </td>
+                                                <td>
+                                                    <span t-raw="'%.1f' %  get_marks(objs['batch'],objs['student'],'Mathematics') if get_marks(objs['batch'],objs['student'],'Mathematics') else ''"/>
+                                                </td>
+                                                <td>
+                                                    <span t-raw="'%.1f' %  get_marks(objs['batch'],objs['student'],'Science') if get_marks(objs['batch'],objs['student'],'Science') else ''"/>
+                                                </td>
+                                                <td>
+                                                    <span t-raw="'%.1f' %  get_marks(objs['batch'],objs['student'],'Social') if get_marks(objs['batch'],objs['student'],'Social') else ''"/>
+                                                </td>
+                                                <td>
+                                                    <span t-raw="'%.1f' %  get_marks(objs['batch'],objs['student'],'Arabic') if get_marks(objs['batch'],objs['student'],'Arabic') else ''"/>
+                                                </td>
+                                                <td>
+                                                    <span t-raw="'%.1f' %  get_marks(objs['batch'],objs['student'],'Religion') if get_marks(objs['batch'],objs['student'],'Religion') else ''"/>
+                                                </td>
+                                                <td>
+                                                    <span t-raw="'%.1f' %  get_marks(objs['batch'],objs['student'],'Qatar History') if get_marks(objs['batch'],objs['student'],'Qatar History') else ''"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table width="100%" style="height:15mm;">
+                                        <tbody>
+                                             <tr width="100%">
+                                                <td width="50%">
+                                                    <div align="left">
+                                                        ________________________________
+                                                    </div>
+                                                </td>
+                                                <td width="50%">
+                                                    <div align="right">
+                                                       __________________________________
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr width="100%">
+                                                <td width="50%">
+                                                    <div align="left">
+                                                        Homeroom Teacher
+                                                    </div>
+                                                </td>
+                                                <td width="50%">
+                                                    <div align="center">
+                                                        School Principal
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p style="page-break-after: always;"></p>
+                                </t>
+                            </t>
+
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

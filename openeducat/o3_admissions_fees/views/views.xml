@@ -1,0 +1,59 @@
+<odoo>
+  <data>
+    <!--<record model="ir.ui.view" id="view_op_student_form_inherit">-->
+      <!--<field name="name">op.student.form.inherit</field>-->
+      <!--<field name="model">op.student</field>-->
+      <!--<field name="inherit_id" ref="openeducat_core.view_op_student_form"/>-->
+      <!--<field name="arch" type="xml">-->
+        <!--<field name="visa_info" position="after">-->
+          <!--<field name="x_id_number_student"/>-->
+        <!--</field>-->
+        <!--<field name="x_id_number_student" position="after">-->
+          <!--<field name="x_passport_number_student"/>-->
+        <!--</field>-->
+      <!--</field>-->
+    <!--</record>-->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="o3_admissions_fees.action_window">
+      <field name="name">o3_admissions_fees window</field>
+      <field name="res_model">o3_admissions_fees.o3_admissions_fees</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="o3_admissions_fees.action_server">
+      <field name="name">o3_admissions_fees server</field>
+      <field name="model_id" ref="model_o3_fees_o3_fees"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="o3_admissions_fees" id="o3_admissions_fees.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="o3_admissions_fees.menu_1" parent="o3_admissions_fees.menu_root"/>
+    <menuitem name="Menu 2" id="o3_admissions_fees.menu_2" parent="o3_admissions_fees.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="o3_admissions_fees.menu_1_list" parent="o3_admissions_fees.menu_1"
+              action="o3_admissions_fees.action_window"/>
+    <menuitem name="Server to list" id="o3_admissions_fees" parent="o3_admissions_fees.menu_2"
+              action="o3_admissions_fees.action_server"/>
+    -->
+  </data>
+</odoo>

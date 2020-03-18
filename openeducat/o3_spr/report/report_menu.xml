@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <report id="student_progress"
+                string="Progress Report"
+                model="op.exam.session"
+                report_type="qweb-pdf"
+                file="o3_spr.student_progress_report"
+                name="o3_spr.student_progress_report"
+                menu="True"/>
+    </data>
+</odoo>
+

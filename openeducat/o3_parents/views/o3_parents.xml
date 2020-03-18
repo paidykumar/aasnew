@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="parent_student_form_view_inherit">
+            <field name="name">op.parent.form.inherit</field>
+            <field name="model">op.parent</field>
+            <field name="inherit_id" ref="openeducat_parent.view_op_parent_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/group" position="before">
+                    <sheet>
+                        <separator colspan="4" string="Father's Information"/>
+                    </sheet>
+                </xpath>
+                <field name="user_id" position="after">
+                    <field name="x_qatar_id_number_father" placeholder="Qatar ID"/>
+                </field>
+                <field name="user_id" position="after">
+                    <field name="x_job_position_father" placeholder="Job Position"/>
+                </field>
+                <field name="user_id" position="after">
+                    <field name="x_passport_number_father" placeholder="Passport Number"/>
+                </field>
+                <field name="user_id" position="after">
+                    <field name="x_workplace_father" placeholder="Workplace Details"/>
+                </field>
+
+                <xpath expr="/form/sheet/group[1]" position="after">
+                    <sheet>
+                        <separator colspan="4" string="Mother's Information"/>
+                        <group col="4">
+                            <field name="x_name_mother" placeholder="Mother's Name"/>
+                            <field name="x_mobile_mother" placeholder="Mother's Mobile Number"/>
+                        </group>
+                    </sheet>
+                </xpath>
+
+            </field>
+
+        </record>
+    </data>
+</odoo>

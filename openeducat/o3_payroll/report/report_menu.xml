@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <report id="report_AAS"
+                string="AAS Pay Slip"
+                model="hr.payslip"
+                report_type="qweb-pdf"
+                file="o3_payroll.o3_report_payslip"
+                name="o3_payroll.o3_report_payslip"
+                menu="True"
+                print_report_name="'AAS Payslip - %s' % (object.employee_id.name)"/>
+    </data>
+</odoo>

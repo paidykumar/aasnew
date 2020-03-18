@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_o3_student_progress_report_o3_student_progress_report,o3_student_progress_report.o3_student_progress_report,model_o3_student_progress_report_o3_student_progress_report,,1,0,0,0

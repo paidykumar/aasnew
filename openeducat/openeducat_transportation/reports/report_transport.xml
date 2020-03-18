@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="attendance_recap_report_wizard">
+        <field name="name">HR Attendance Custom Recap Report</field>
+        <field name="model">isk.report</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Transport Report">
+                <group>
+                    <field name="vehicle"/>
+                    <field name="name"/>
+                </group>
+                <footer>
+                    <button name="get_report" string="Get Report" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_attendance_recap_report_wizard"
+                name="Trasportation Report"
+                res_model="isk.report"
+                view_mode="form"
+                target="new"/>
+
+    <menuitem action="action_attendance_recap_report_wizard"
+              id="menu_attendance_report_wizard"
+              parent="menu_op_school_config_transportations"/>
+</odoo>

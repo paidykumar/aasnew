@@ -1,0 +1,322 @@
+<odoo>
+    <data>
+        <template id="o3_timetable_teacher_generate">
+            <style>
+                .font{
+                font-size:8px;
+                font-family:"Helvetica"
+                }
+                .page{
+                size: A4;
+                }
+
+            </style>
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="font">
+                            <div class="page">
+                                <br></br>
+                                <div class="text-center">
+                                    <h2>
+                                        <strong>Faculty TimeTables</strong>
+                                    </h2>
+                                </div>
+                                <br></br>
+                                <!-- <div class="text-left">
+                                     <b>Faculty Name:</b> <span t-esc="get_full_name(data)"/>
+                                 </div> -->
+                                <br></br>
+                                <div class="text-right">
+                                    <h5>
+                                        <b>Academic Year</b>
+                                        <span t-esc="data['start_date'][:4]"/>
+                                        -
+                                        <span t-esc="data['end_date'][:4]"/>
+                                    </h5>
+                                </div>
+                                <br></br>
+                                <style type="text/css">
+                                    .some{
+                                    table-layout: fixed;
+                                     border-collapse: collapse;
+                                    overflow: hidden;
+                                        }
+
+                                    td{table-layout: fixed;
+                                    height:14mm;
+                                    text-align:left;
+                                    }
+
+                                    .row-ID {
+                                      width: 4%;
+                                    }
+                                     .row-faculty {
+                                      width: 11%;
+                                    }
+
+                                    .row-email {
+                                      width: 17%;
+                                    }
+
+                                </style>
+                                <table class="table table-bordered" style="border-collapse: collapse; layout:fixed;border:2px">
+                                    <tr>
+                                        <th class="row-1 row-ID">S.No</th>
+                                        <th class="row-2 row-faculty">Faculty</th>
+                                        <th class="row-3 row-email">Sunday</th>
+                                        <th class="row-4 row-email">Monday</th>
+                                        <th class="row-5 row-email">Tuesday</th>
+                                        <th class="row-6 row-email">Wednesday</th>
+                                        <th class="row-7 row-email">Thursday</th>
+                                    </tr>
+                                    <tbody>
+                                        <tr t-foreach="get_object(data)" t-as="a">
+                                            <td class="some">
+                                                <span t-esc="a_index+1"/>
+                                            </td>
+                                            <td class="some">
+                                                <span t-esc="'%s' %  a['faculty'] if  a['faculty']  else ''"/>
+
+                                            </td>
+                                            <td class="some" style="padding: 0px;">
+                                                <table style="width:100%;" class="some">
+                                                    <td >
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('6',{'sequence':''})['sequence'] is 1 ">
+                                                                <span t-esc="b.get('6',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td >
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('6',{'sequence':''})['sequence'] is 2 ">
+                                                                <span t-esc="b.get('6',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td >
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('6',{'sequence':''})['sequence'] is 3 ">
+                                                                <span t-esc="b.get('6',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td >
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('6',{'sequence':''})['sequence'] is 4 ">
+                                                                <span t-esc="b.get('6',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td >
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('6',{'sequence':''})['sequence'] is 5 ">
+                                                                <span t-esc="b.get('6',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td >
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('6',{'sequence':''})['sequence'] is 6 ">
+                                                                <span t-esc="b.get('6',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                </table>
+                                            </td>
+                                            <td class="some" style="padding: 0px;">
+                                                <table style="width:100%;" class="some">
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('0',{'sequence':''})['sequence'] is 1 ">
+                                                                <span t-esc="b.get('0',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('0',{'sequence':''})['sequence'] is 2 ">
+                                                                <span t-esc="b.get('0',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('0',{'sequence':''})['sequence'] is 3 ">
+                                                                <span t-esc="b.get('0',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('0',{'sequence':''})['sequence'] is 4 ">
+                                                                <span t-esc="b.get('0',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('0',{'sequence':''})['sequence'] is 5 ">
+                                                                <span t-esc="b.get('0',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('0',{'sequence':''})['sequence'] is 6 ">
+                                                                <span t-esc="b.get('0',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                </table>
+                                            </td>
+                                            <td class="some"  style="padding: 0px; ">
+                                                <table style="width:100%;" class="some">
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('1',{'sequence':''})['sequence'] is 1 ">
+                                                                <span t-esc="b.get('1',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('1',{'sequence':''})['sequence'] is 2 ">
+                                                                <span t-esc="b.get('1',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('1',{'sequence':''})['sequence'] is 3 ">
+                                                                <span t-esc="b.get('1',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('1',{'sequence':''})['sequence'] is 4 ">
+                                                                <span t-esc="b.get('1',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('1',{'sequence':''})['sequence'] is 5 ">
+                                                                <span t-esc="b.get('1',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('1',{'sequence':''})['sequence'] is 6 ">
+                                                                <span t-esc="b.get('1',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                </table>
+                                            </td>
+                                            <td class="some" style="padding: 0px;">
+                                                <table style="width:100%;" class="some">
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('2',{'sequence':''})['sequence'] is 1 ">
+                                                                <span t-esc="b.get('2',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('2',{'sequence':''})['sequence'] is 2 ">
+                                                                <span t-esc="b.get('2',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('2',{'sequence':''})['sequence'] is 3 ">
+                                                                <span t-esc="b.get('2',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('2',{'sequence':''})['sequence'] is 4 ">
+                                                                <span t-esc="b.get('2',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('2',{'sequence':''})['sequence'] is 5 ">
+                                                                <span t-esc="b.get('2',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('2',{'sequence':''})['sequence'] is 6 ">
+                                                                <span t-esc="b.get('2',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                </table>
+                                            </td>
+                                            <td class="some" style="padding: 0px;">
+                                                <table style="width:100%;" class="some">
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('3',{'sequence':''})['sequence'] is 1 ">
+                                                                <span t-esc="b.get('3',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('3',{'sequence':''})['sequence'] is 2 ">
+                                                                <span t-esc="b.get('3',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('3',{'sequence':''})['sequence'] is 3 ">
+                                                                <span t-esc="b.get('3',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('3',{'sequence':''})['sequence'] is 4 ">
+                                                                <span t-esc="b.get('3',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('3',{'sequence':''})['sequence'] is 5 ">
+                                                                <span t-esc="b.get('3',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-foreach="a['line']" t-as="b">
+                                                            <t t-if="b.get('3',{'sequence':''})['sequence'] is 6 ">
+                                                                <span t-esc="b.get('3',{'class':''})['class']"/>
+                                                            </t>
+                                                        </t>
+                                                    </td>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

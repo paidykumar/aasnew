@@ -1,0 +1,20 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="view_op_media_tree_inherit">
+      <field name="name">op.media.inherit</field>
+      <field name="model">op.media</field>
+      <field name="inherit_id" ref="openeducat_library.view_op_media_form"/>
+      <field name="arch" type="xml">
+        <field name="edition" position="after">
+          <field name="series"/>
+        </field>
+        <field name="series" position="after">
+          <field name="classification"/>
+        </field>
+        <field name="classification" position="after">
+          <field name="language"/>
+        </field>
+      </field>
+    </record>
+  </data>
+</odoo>

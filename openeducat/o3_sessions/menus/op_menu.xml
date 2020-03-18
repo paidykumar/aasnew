@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="openeducat_timetable.o3_menu_generate_time_table_report"
+                  string="Timetable Report"
+                  parent="openeducat_timetable.menu_op_timetable_config"
+                  groups="openeducat_core.group_op_back_office"
+                  sequence="40"
+                  action="o3_act_open_time_table_report_view"/>
+
+
+    </data>
+</odoo>
